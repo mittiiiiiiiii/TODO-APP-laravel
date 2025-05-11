@@ -1,0 +1,20 @@
+version: "3.9"
+
+volumes:
+  db-store:
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./infra/docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - db-store:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-laravel}
+      - MYSQL_USER=${DB_USERNAME:-phper}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
