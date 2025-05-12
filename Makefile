@@ -6,6 +6,8 @@ install:
 	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
+	docker compose exec app php artisan migrate
+	docker compose exec app php artisan session:table
 
 build:
 	docker compose build
