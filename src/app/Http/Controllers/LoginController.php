@@ -9,14 +9,23 @@ class LoginController extends Controller
 {
     public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required|string',
-        ]);
+        // $credentials = $request->validate([
+        //     'email'    => 'required|email',
+        //     'password' => 'required|string',
+        // ]);
 
-        if (Auth::attempt($credentials)) {
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect() -> route('Tasks');
+        // }
+
+        // バリデーションなしver.
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $request->session()->regenerate();
-            return redirect('/tasks');
+            return redirect()->route('Tasks');
         }
 
         return back()->withErrors([
