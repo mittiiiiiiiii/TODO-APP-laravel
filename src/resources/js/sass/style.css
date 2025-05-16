@@ -190,21 +190,21 @@
 }
 
 .task-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-bottom: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-bottom: 0.5rem;
 }
 .task-row {
-    display: flex;
-    gap: 0.5rem;
+	display: flex;
+	gap: 0.5rem;
 }
 .task-label {
-    font-weight: bold;
-    color: #2563eb;
-    min-width: 4rem;
+	font-weight: bold;
+	color: #2563eb;
+	min-width: 4rem;
 }
 .task-value {
-    color: #374151;
-    word-break: break-all;
+	color: #374151;
+	word-break: break-all;
 }
