@@ -1,3 +1,4 @@
+import Layout from "@/Layout";
 /// <reference types="vite/client" />
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
@@ -14,7 +15,11 @@ createInertiaApp({
 		),
 	setup({ el, App, props }) {
 		const root = createRoot(el);
-		root.render(<App {...props} />);
+		root.render(
+			<Layout>
+				<App {...props} />
+			</Layout>,
+		);
 	},
 	progress: {
 		color: "#4B5563",
