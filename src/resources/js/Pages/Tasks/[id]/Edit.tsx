@@ -1,10 +1,10 @@
 import { router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
-import type { Task} from "@/types/FormData";
+import type { Task } from "@/types/FormData";
 
 type EditTaskPageProps = {
-    task: Task;
+	task: Task;
 };
 
 export default function EditTaskPage() {
@@ -16,22 +16,22 @@ export default function EditTaskPage() {
 		setValue,
 		formState: { errors },
 	} = useForm<Task>({
-        defaultValues: {
-            title: task.title || "",
-            description: task.description || "",
-            due_date: task.due_date ? task.due_date.slice(0, 10) : "",
-            status: task.status || "not_started",
-        },
-    });
+		defaultValues: {
+			title: task.title || "",
+			description: task.description || "",
+			due_date: task.due_date ? task.due_date.slice(0, 10) : "",
+			status: task.status || "not_started",
+		},
+	});
 
-    const onSubmit = (data: Task) => {
-        router.post(`/tasks/${task.id}/edit`, {
-            title: data.title,
-            description: data.description,
-            date: data.due_date,
-            status: data.status,
-        });
-    };
+	const onSubmit = (data: Task) => {
+		router.post(`/tasks/${task.id}/edit`, {
+			title: data.title,
+			description: data.description,
+			date: data.due_date,
+			status: data.status,
+		});
+	};
 
 	const handleCancel = () => {
 		router.visit("/tasks");

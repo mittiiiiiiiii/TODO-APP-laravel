@@ -1,7 +1,7 @@
 import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
-import type {Task} from "@/types/FormData";
+import type { Task } from "@/types/FormData";
 
 export default function TasksNewPage() {
 	const {

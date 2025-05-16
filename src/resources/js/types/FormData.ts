@@ -11,14 +11,13 @@ export type UserProps = {
 	};
 };
 
-
 export type Task = {
 	id: number;
 	title: string;
 	description?: string;
 	status: "not_started" | "in_progress" | "completed";
 	due_date?: string;
-    userId?: number;
+	userId?: number;
 };
 
 export type TaskProps = {

@@ -1,25 +1,21 @@
 import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
-
-type FormData = {
-	email: string;
-	password: string;
-};
+import type { UserData } from "@/types/FormData";
 
 export default function Login() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<UserData>({
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: UserData) => {
 		console.log("ボタンが押されたよー", data);
 		router.post("/login", data);
 	};
