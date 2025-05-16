@@ -1,5 +1,4 @@
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
 /* ユーザーページ用グローバルCSS */
@@ -83,7 +82,7 @@
 }
 .tasks-box {
 	width: 100%;
-	max-width: 40rem;
+	max-width: 60rem;
 	background: #fff;
 	border-radius: 0.5rem;
 	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
@@ -188,4 +187,24 @@
 }
 .profile-edit-btn:hover {
 	background: #ea580c;
+}
+
+.task-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-bottom: 0.5rem;
+}
+.task-row {
+	display: flex;
+	gap: 0.5rem;
+}
+.task-label {
+	font-weight: bold;
+	color: #2563eb;
+	min-width: 4rem;
+}
+.task-value {
+	color: #374151;
+	word-break: break-all;
 }
