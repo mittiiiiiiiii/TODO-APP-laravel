@@ -1,34 +1,28 @@
 import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
-
-type FormData = {
-	title: string;
-	description?: string;
-	date?: string;
-	status: string;
-};
+import type {Task} from "@/types/FormData";
 
 export default function TasksNewPage() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<Task>({
 		defaultValues: {
 			title: "",
 			description: "",
-			date: "",
+			due_date: "",
 			status: "not_started",
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: Task) => {
 		console.log("タスクを作成するよー", data);
 		router.post("/tasks/new", {
 			title: data.title,
 			description: data.description,
-			due_date: data.date,
+			due_date: data.due_date,
 			status: data.status,
 		});
 	};
@@ -80,11 +74,11 @@ export default function TasksNewPage() {
 						<input
 							id="date"
 							type="date"
-							{...register("date")}
+							{...register("due_date")}
 							className="tasks-input"
 						/>
-						{errors.date && (
-							<span className="form-error">{errors.date.message}</span>
+						{errors.due_date && (
+							<span className="form-error">{errors.due_date.message}</span>
 						)}
 					</div>
 					<div>
