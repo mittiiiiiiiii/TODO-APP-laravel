@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
