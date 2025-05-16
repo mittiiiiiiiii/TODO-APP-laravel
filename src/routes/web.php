@@ -25,7 +25,7 @@ Route::get('/login', function () {
     return Inertia::render('Login');
 })->name('Login');
 
-Route::post('/login', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'store']);
 
 Route::prefix('tasks')->group(function () {
     Route::get('/tasks', function () {
