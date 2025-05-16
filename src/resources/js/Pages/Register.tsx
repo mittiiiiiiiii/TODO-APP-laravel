@@ -1,4 +1,4 @@
-import type { FormData } from "@/types/FormData";
+import type { UserData } from "@/types/FormData";
 import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
@@ -8,7 +8,7 @@ export default function Register() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<UserData>({
 		defaultValues: {
 			name: "",
 			email: "",
@@ -16,7 +16,7 @@ export default function Register() {
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: UserData) => {
 		console.log("ボタンが押されたよー", data);
 		router.post("/register", data);
 	};

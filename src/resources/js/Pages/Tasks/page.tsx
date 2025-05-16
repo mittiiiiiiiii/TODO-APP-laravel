@@ -1,20 +1,9 @@
 import { router, usePage } from "@inertiajs/react";
 import "@/sass/style.css";
-
-type Task = {
-	id: number;
-	title: string;
-	description?: string;
-	status: string;
-	due_date?: string;
-};
-
-type PageProps = {
-	tasks: Task[];
-};
+import type { TaskProps } from "@/types/FormData";
 
 export default function Tasks() {
-	const { tasks } = usePage<PageProps>().props;
+	const { tasks } = usePage<TaskProps>().props;
 
 	const handleAddTask = () => {
 		router.visit("/tasks/new");

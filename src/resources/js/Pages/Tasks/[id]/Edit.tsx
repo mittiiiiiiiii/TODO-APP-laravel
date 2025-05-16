@@ -1,46 +1,34 @@
 import { router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
+import type { Task } from "@/types/FormData";
 
-type FormData = {
-	title: string;
-	description?: string;
-	date?: string;
-	status: string;
-};
-
-type PageProps = {
-	task: {
-		id: number;
-		title: string;
-		description?: string;
-		status: string;
-		due_date?: string;
-	};
+type EditTaskPageProps = {
+	task: Task;
 };
 
 export default function EditTaskPage() {
-	const { task } = usePage<PageProps>().props;
+	const { task } = usePage<EditTaskPageProps>().props;
 
 	const {
 		register,
 		handleSubmit,
 		setValue,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<Task>({
 		defaultValues: {
 			title: task.title || "",
 			description: task.description || "",
-			date: task.due_date ? task.due_date.slice(0, 10) : "",
+			due_date: task.due_date ? task.due_date.slice(0, 10) : "",
 			status: task.status || "not_started",
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: Task) => {
 		router.post(`/tasks/${task.id}/edit`, {
 			title: data.title,
 			description: data.description,
-			date: data.date,
+			date: data.due_date,
 			status: data.status,
 		});
 	};
@@ -91,11 +79,11 @@ export default function EditTaskPage() {
 						<input
 							id="date"
 							type="date"
-							{...register("date")}
+							{...register("due_date")}
 							className="tasks-input"
 						/>
-						{errors.date && (
-							<span className="form-error">{errors.date.message}</span>
+						{errors.due_date && (
+							<span className="form-error">{errors.due_date.message}</span>
 						)}
 					</div>
 					<div>

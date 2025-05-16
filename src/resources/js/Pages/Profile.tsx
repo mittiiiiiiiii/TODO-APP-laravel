@@ -1,28 +1,16 @@
 import { router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
-
-type FormData = {
-	name: string;
-	email: string;
-	password: string;
-};
-
-type PageProps = {
-	user: {
-		name: string;
-		email: string;
-	};
-};
+import type { UserData, UserProps } from "@/types/FormData";
 
 export default function ProfilePage() {
-	const { user } = usePage<PageProps>().props;
+	const { user } = usePage<UserProps>().props;
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<UserData>({
 		defaultValues: {
 			name: user.name || "",
 			email: user.email || "",
@@ -30,7 +18,7 @@ export default function ProfilePage() {
 		},
 	});
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: UserData) => {
 		router.post("/profile", data);
 	};
 
