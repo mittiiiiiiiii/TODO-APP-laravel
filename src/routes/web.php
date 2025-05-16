@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Task;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,8 @@ Route::get('/Preview', function () {
 Route::get('/register', function () {
     return Inertia::render('Register');
 })->name('Register');
+
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', function () {
     return Inertia::render('Login');

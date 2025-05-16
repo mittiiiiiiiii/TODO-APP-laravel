@@ -1,6 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useForm } from "react-hook-form";
 import type {FormData} from "@/types/FormData";
+import "@/sass/style.css";
 
 export default function Register() {
     const {
