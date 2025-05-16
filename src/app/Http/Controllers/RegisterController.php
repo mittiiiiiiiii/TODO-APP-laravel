@@ -23,6 +23,7 @@ class RegisterController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return response()->json(['user' => $user], 201);
+        return redirect(route('Login'));
+        // return redirect() -> route('Login');
     }
 }
