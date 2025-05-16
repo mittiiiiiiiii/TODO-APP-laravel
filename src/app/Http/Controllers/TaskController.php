@@ -18,4 +18,19 @@ class TaskController extends Controller
             'tasks' => $tasks,
         ]);
     }
+
+    public function store(Request $request)
+{
+    $user = $request->user();
+
+    $task = Task::create([
+        'title' => $request->input('title'),
+        'description' => $request->input('description'),
+        'due_date' => $request->input('due_date'),
+        'status' => $request->input('status'),
+        'user_id' => $user->id,
+    ]);
+
+    return redirect()->route('Tasks');
+}
 }

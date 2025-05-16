@@ -31,13 +31,15 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::prefix('tasks')->group(function () {
     Route::get('/', [TaskController::class, 'index'])->name('Tasks');
 
-    Route::get('/tasks/:id/edit', function () {
+    Route::get('/:id/edit', function () {
         return Inertia::render('Tasks/[id]/Edit');
     })->name('Tasks.Edit');
 
-    Route::get('/tasks/new', function () {
-        return Inertia::render('Tasks');
+    Route::get('/new', function () {
+        return Inertia::render('Tasks/New');
     })->name('Tasks.New');
+
+    Route::post('/new', [TaskController::class, 'store'])->name('Tasks.store');
 });
 
 Route::get('/profile', function () {
