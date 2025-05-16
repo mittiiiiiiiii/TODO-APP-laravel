@@ -20,17 +20,28 @@ class TaskController extends Controller
     }
 
     public function store(Request $request)
-{
-    $user = $request->user();
+    {
+        $user = $request->user();
 
-    $task = Task::create([
-        'title' => $request->input('title'),
-        'description' => $request->input('description'),
-        'due_date' => $request->input('due_date'),
-        'status' => $request->input('status'),
-        'user_id' => $user->id,
-    ]);
+        $task = Task::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'due_date' => $request->input('due_date'),
+            'status' => $request->input('status'),
+            'user_id' => $user->id,
+        ]);
 
-    return redirect()->route('Tasks');
-}
+        return redirect()->route('Tasks');
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $user = $request->user();
+    $task = Task::where('id', $id)->where('user_id', $user->id)->first();
+    if ($task) {
+        $task->delete();
+        return redirect()->route('Tasks')->with('success', 'タスクを削除しました');
+    }
+    return redirect()->route('Tasks')->with('error', 'タスクが見つかりません');
+    }
 }

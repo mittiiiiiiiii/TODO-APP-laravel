@@ -25,7 +25,8 @@ export default function Tasks() {
 	};
 
 	const handleDeleteTask = (taskId: number) => {
-		router.delete(`/tasks/${taskId}`);
+		// console.log(taskId);
+		router.post(`/tasks/${String(taskId)}`);
 	};
 
 	return (

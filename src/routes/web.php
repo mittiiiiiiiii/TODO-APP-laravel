@@ -40,6 +40,8 @@ Route::prefix('tasks')->group(function () {
     })->name('Tasks.New');
 
     Route::post('/new', [TaskController::class, 'store'])->name('Tasks.store');
+
+    Route::post('/{id}', [TaskController::class, 'delete'])->name('Tasks.delete');
 });
 
 Route::get('/profile', function () {
