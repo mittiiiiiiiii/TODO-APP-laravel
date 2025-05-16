@@ -14,7 +14,7 @@ class TaskController extends Controller
         $user = $request->user();
         $tasks = Task::where('user_id', $user->id)->orderBy('due_date', 'asc')->get();
 
-        return Inertia::render('Tasks', [
+        return Inertia::render('Tasks/page', [
             'tasks' => $tasks,
         ]);
     }
