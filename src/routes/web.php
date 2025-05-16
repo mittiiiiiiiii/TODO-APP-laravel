@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,6 @@ Route::prefix('tasks')->group(function () {
 Route::get('/profile', function () {
     return Inertia::render('Profile');
 })->name('Profile');
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('Profile.edit');
+Route::post('/profile', [ProfileController::class, 'update'])->name('Profile.update');
