@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,9 +29,7 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::prefix('tasks')->group(function () {
-    Route::get('/tasks', function () {
-        return Inertia::render('Tasks');
-    })->name('Tasks');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('Tasks');
 
     Route::get('/tasks/:id/edit', function () {
         return Inertia::render('Tasks/[id]/Edit');
