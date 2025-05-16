@@ -31,9 +31,8 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::prefix('tasks')->group(function () {
     Route::get('/', [TaskController::class, 'index'])->name('Tasks');
 
-    Route::get('/:id/edit', function () {
-        return Inertia::render('Tasks/[id]/Edit');
-    })->name('Tasks.Edit');
+    Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('Tasks.edit');
+    Route::post('/{id}/edit', [TaskController::class, 'update'])->name('Tasks.update');
 
     Route::get('/new', function () {
         return Inertia::render('Tasks/New');
