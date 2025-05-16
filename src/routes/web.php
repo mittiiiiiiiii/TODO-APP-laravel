@@ -29,7 +29,7 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::prefix('tasks')->group(function () {
-    Route::get('/tasks', [TaskController::class, 'index'])->name('Tasks');
+    Route::get('/', [TaskController::class, 'index'])->name('Tasks');
 
     Route::get('/tasks/:id/edit', function () {
         return Inertia::render('Tasks/[id]/Edit');
