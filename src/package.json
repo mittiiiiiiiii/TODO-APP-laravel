@@ -20,8 +20,11 @@
     "vite": "^6.2.4"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@inertiajs/react": "^2.0.9",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.56.4",
+    "zod": "^3.24.4"
   }
 }

@@ -2,10 +2,15 @@ import { router, usePage } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
 import type { Task } from "@/types/FormData";
+import { taskSchema } from "@/types/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { z } from "zod";
 
 type EditTaskPageProps = {
 	task: Task;
 };
+
+type TaskInput = z.infer<typeof taskSchema>;
 
 export default function EditTaskPage() {
 	const { task } = usePage<EditTaskPageProps>().props;
@@ -15,7 +20,8 @@ export default function EditTaskPage() {
 		handleSubmit,
 		setValue,
 		formState: { errors },
-	} = useForm<Task>({
+	} = useForm<TaskInput>({
+		resolver: zodResolver(taskSchema),
 		defaultValues: {
 			title: task.title || "",
 			description: task.description || "",
@@ -24,7 +30,7 @@ export default function EditTaskPage() {
 		},
 	});
 
-	const onSubmit = (data: Task) => {
+	const onSubmit = (data: TaskInput) => {
 		router.post(`/tasks/${task.id}/edit`, {
 			title: data.title,
 			description: data.description,

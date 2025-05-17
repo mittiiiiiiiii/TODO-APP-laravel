@@ -2,13 +2,19 @@ import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
 import "@/sass/style.css";
 import type { Task } from "@/types/FormData";
+import { taskSchema } from "@/types/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { z } from "zod";
+
+type TaskInput = z.infer<typeof taskSchema>;
 
 export default function TasksNewPage() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<Task>({
+	} = useForm<TaskInput>({
+		resolver: zodResolver(taskSchema),
 		defaultValues: {
 			title: "",
 			description: "",
@@ -17,7 +23,7 @@ export default function TasksNewPage() {
 		},
 	});
 
-	const onSubmit = (data: Task) => {
+	const onSubmit = (data: TaskInput) => {
 		console.log("タスクを作成するよー", data);
 		router.post("/tasks/new", {
 			title: data.title,
