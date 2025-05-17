@@ -1,7 +1,11 @@
-import type { UserData } from "@/types/FormData";
+import { userDataSchema } from "@/types/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "@inertiajs/react";
 import { useForm } from "react-hook-form";
+import type { z } from "zod";
 import "@/sass/style.css";
+
+type UserData = z.infer<typeof userDataSchema>;
 
 export default function Register() {
 	const {
@@ -9,6 +13,7 @@ export default function Register() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<UserData>({
+		resolver: zodResolver(userDataSchema),
 		defaultValues: {
 			name: "",
 			email: "",

@@ -14,7 +14,7 @@ export default function TasksNewPage() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<TaskInput>({
-        resolver: zodResolver(taskSchema),
+		resolver: zodResolver(taskSchema),
 		defaultValues: {
 			title: "",
 			description: "",

@@ -21,7 +21,7 @@ export default function EditTaskPage() {
 		setValue,
 		formState: { errors },
 	} = useForm<TaskInput>({
-        resolver: zodResolver(taskSchema),
+		resolver: zodResolver(taskSchema),
 		defaultValues: {
 			title: task.title || "",
 			description: task.description || "",
