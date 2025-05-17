@@ -7,8 +7,9 @@ export default function Tasks() {
 	const { tasks } = usePage<TaskProps>().props;
 
 	const [filter, setFilter] = useState<
-		"all" | "completed" | "not_completed" | "in_progress"
-	>("all");
+    "all" | "not_started" | "in_progress" | "completed"
+    >("all");
+
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
 	const handleAddTask = () => {
@@ -32,9 +33,8 @@ export default function Tasks() {
 	}
 
 	const filteredTasks = tasks.filter((task) => {
-		if (filter === "completed") return task.status === "completed";
-		if (filter === "not_completed") return task.status !== "completed";
-		return true;
+		if (filter === "all") return true;
+        return task.status === filter;
 	});
 
 	const sortedTasks = [...filteredTasks].sort((a, b) => {
@@ -54,17 +54,18 @@ export default function Tasks() {
 					<label>
 						絞り込み:　
 						<select
-							value={filter}
-							onChange={(e) =>
-								setFilter(
-									e.target.value as "all" | "completed" | "not_completed",
-								)
-							}
-						>
-							<option value="all">すべて</option>
-							<option value="completed">完了のみ</option>
-							<option value="not_completed">未完了のみ</option>
-						</select>
+                            value={filter}
+                            onChange={(e) =>
+                                setFilter(
+                                e.target.value as "all" | "not_started" | "in_progress" | "completed"
+                                )
+                            }
+                            >
+                            <option value="all">すべて</option>
+                            <option value="not_started">未着手のみ</option>
+                            <option value="in_progress">進行中のみ</option>
+                            <option value="completed">完了のみ</option>
+                        </select>
 					</label>
 					<label style={{ marginLeft: "1rem" }}>
 						期限順:　
